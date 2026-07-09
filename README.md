@@ -1,1 +1,31 @@
 # Nursery-app
+
+private fun onSignupSuccess(
+    username: String,
+    email: String,
+    phone: String
+) {
+
+    val user = hashMapOf(
+        "username" to username,
+        "email" to email,
+        "phone" to phone
+    )
+
+    db.collection("users")
+        .add(user)
+        .addOnSuccessListener {
+            Toast.makeText(
+                this,
+                "Signup Successful!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        .addOnFailureListener { e ->
+            Toast.makeText(
+                this,
+                "Failed: ${e.message}",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+}
